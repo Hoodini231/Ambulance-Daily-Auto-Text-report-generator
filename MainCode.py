@@ -102,7 +102,7 @@ class base:
 
 def writeRpt():
 	with open('newTxt.txt','w') as f:
-		f.writelines('EAS Sitrep Daily report for: ' + d1)
+		f.writelines('Ambulance Sitrep Daily report for: ' + d1)
 	writeComplete()
 
 def writeHp(base, shiftno): 														#function which returns a str to reperesent the total health decleration for a base(Honestly could have just put this in the base class zzz)
@@ -123,10 +123,10 @@ def writeHp(base, shiftno): 														#function which returns a str to reper
 			return ("all clear" + " for " + shift[shiftno]+" shift")
 	
 def writeComplete():
-	cmplt = ["\n\nEAS Sitrep Completed: "]														#Writes down, shifts submitted, health decleration status and any issues per base								
-	hpLines = ["\n\nEAS Healh Decleration: "]													#done in a single function as it can be leveraged to do multiple 'calculations' for a single iteration of looping for
-	discrep = ["\n\nEAS Discrepencies: "]														#each base and determining which shift has submitted
-	ART = ["\n\nEAS ART(3 Days) Status: (Morning shift is Today, Night shift was yesterday)"]
+	cmplt = ["\n\nAmbulance Sitrep Completed: "]														#Writes down, shifts submitted, health decleration status and any issues per base								
+	hpLines = ["\n\nAmbulance Healh Decleration: "]													#done in a single function as it can be leveraged to do multiple 'calculations' for a single iteration of looping for
+	discrep = ["\n\nAmbulance Discrepencies: "]														#each base and determining which shift has submitted
+	ART = ["\n\nAmbulance ART(3 Days) Status: (Morning shift is Today, Night shift was yesterday)"]
 	string = ""
 	toStrForHP = "n/a"
 	onlyOneSubmission = 0
