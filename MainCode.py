@@ -1,8 +1,19 @@
 from datetime import datetime, timedelta
 import re
 import pandas as pd
-df = pd.read_csv('DailyReport.csv', skiprows=5)		#Deltes the data we don't need
+df = pd.read_csv('DailyReport.csv', skiprows=5)		#Deltes the data we don't need, also for confidentiality sakes I changed the name of the actual report to DailyReort
 
+'''
+Due to the nature of the the reports, it will save the with the same name followed by the number, this makes it so you dont have to change the name of the file
+Because of windows, if file have same name it will just put a number to diff
+serialNumberOfCSV = 0
+with open('Serial.txt', 'r') as r:
+	serialNumberOfCSV = r.read()
+	
+with open('Serial.txt','w') as r:
+	no = int(serialNumberOfCSV) + 1
+	r.write(str(no))
+'''
 today = datetime.today()
 d1 = today.strftime("%d %b %Y")
 yesterday = today - timedelta(days = 1)
