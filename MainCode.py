@@ -17,6 +17,7 @@ with open('Serial.txt','w') as r:
 today = datetime.today()
 d1 = today.strftime("%d %b %Y")
 yesterday = today - timedelta(days = 1)
+yesterday = yesterday.strftime("%d %b %Y")
 df = df.drop(columns = ['Response ID','Download Status'])						#annoying columns that block info while testing
 df = df.loc[~(df['Timestamp'].str.contains('^'+yesterday+'[a-z]*', flags = re.I, regex = True) & df['Timestamp'].str.endswith('AM'))] #Removes all the morning shifts from yesterday
 df = df.sort_values('Ambulance Base', ascending = True)
@@ -49,13 +50,13 @@ class Shift:
 			return 'et'
 
 	def getMaskedNric(self, index):										#Masks their ID number
-		nric_current = nric[index]
+		nric_current = self.nric[index]
 		maskedNric = nric_current[0]+nric_current[5:8]
 		return maskedNric
 
 	def checkART_Status(self):											#Checks the ART test status for the shifts team, will return either all clear or the masked id of who has not done it
 		indexOfNotDoneART = []
-		OutputStr_forNRIC = ""
+		outputStr_forNRIC = ""
 		for x in range(3):
 			if(self.ARTStatus[x].lower() != "yes"):						#If any of the art status is no, then take down the index (parallel arrays)
 				indexOfNotDoneART.append(x)
@@ -129,10 +130,10 @@ def writeComplete():
 	ART = ["\n\nAmbulance ART(3 Days) Status: (Morning shift is Today, Night shift was yesterday)"]
 	string = ""
 	toStrForHP = "n/a"
-	onlyOneSubmission = 0
-	shift_indicator = 1
 	names = ["morning","night"]
 	for i in range(6):
+		onlyOneSubmission = 0
+		shift_indicator = 1
 		Art_Status_base = ["n/a","n/a"]
 		if baseEntry[i].attendance[0] == 2: 									#If there are both shift submissions for the base in question
 			string = "Yes" 														#Flagged, yes both submitted
@@ -141,13 +142,13 @@ def writeComplete():
 			Art_Status_base[1] = baseEntry[i].night_shift.checkART_Status()
 		
 		elif baseEntry[i].attendance[0] == 1:
-			if(baseEntry[i].attendance[1] == 1): 								#does the attendance for morning shift = 1?
-				onlyOneSubmission = 1 											#no submisson for night when morning has 1 vice versa, if morning not submitted then onlyOnesub would b 0...
-				shift_indicator = 0  											#Way of flagging which shift by index is the submitted one for health declare
-			shift_current = baseEntry[shift_indicator].getShifts()				#Gets art status for the current shift in question
+			if(baseEntry[i].attendance[1] == 1): 							#does the attendance for morning shift = 1?
+				onlyOneSubmission = 1 								#no submisson for night when morning has 1 vice versa, if morning not submitted then onlyOnesub would b 0...
+				shift_indicator = 0  								#Way of flagging which shift by index is the submitted one for health declare
+			shift_current = baseEntry[i].getShifts()						#Gets art status for the current shift in question
 			Art_Status_base[shift_indicator] = shift_current[shift_indicator].checkART_Status()
-			string = "No submisson for "+ names[onlyOneSubmission] + " shift" 	#Flagged, no submission for X shift
-			toStrForHP = writeHp(baseEntry[i], shift_indicator) 				#Finds out the string for the base in question for health, for only the shift in question
+			string = "No submisson for "+ names[onlyOneSubmission] + " shift" 			#Flagged, no submission for X shift
+			toStrForHP = writeHp(baseEntry[i], shift_indicator) 					#Finds out the string for the base in question for health, for only the shift in question
 
 		else: 																	#No submissions for any shift
 			string = "No submission for both shifts"
