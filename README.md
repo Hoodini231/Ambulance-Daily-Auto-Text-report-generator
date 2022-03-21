@@ -1,5 +1,5 @@
 # Automated report system for Ambulance sitreps
-**Goal of the project:** To output a formatted textual report based on data recieved from ambulances
+**Goal of the project:** To output a formatted textual report based on data recieved from ambulance teams
 
 **Context of the project:** For my national service I was tasked to report on the daily situation of a few ambulance bases across Singapore. Feeling that the task was extremely repetitive, I decided to automate the process.
 
@@ -10,6 +10,9 @@
   * Correctly identify the masked NRIC of those who have not completed their ART SA test
   * Output an accurate report in the form of a text document or string
   * Output the report via Twilio to my whatsapp phone number
+
+**Dependencies:**
+  * Serial.txt, acts as a reference for the number in the name of the downloaded data
 
 **Additional features added:**
   * Ability to automatically login in to FormSG and secure mail through the use of Selenium
