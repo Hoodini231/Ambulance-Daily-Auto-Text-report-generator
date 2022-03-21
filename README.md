@@ -15,8 +15,7 @@
   * Serial.txt, acts as a reference for the number in the name of the downloaded data
 
 **Additional features added:**
-  * Ability to automatically login in to FormSG and secure mail through the use of Selenium
+  * Ability to automatically login in to survey website and mail through the use of Selenium
   * Using MAC OSX and Iphone SMS forwarding feature to acquire SMS otp for login (SQlite3 library used)
-  * Grab OTP from secure mail for FormSG through use of mouse control as mail uses auto-ids and a private network
   * Download Data for this morning and tonight
   * Sends out report at 10 am to me while I am at camp
