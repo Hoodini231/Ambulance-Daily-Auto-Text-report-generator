@@ -16,6 +16,6 @@
 
 **Additional features added:**
   * Ability to automatically login in to survey website and mail through the use of Selenium
-  * Using MAC OSX and Iphone SMS forwarding feature to acquire SMS otp for login (SQlite3 library used)
-  * Download Data for this morning and tonight
-  * Sends out report at 10 am to me while I am at camp
+  * Using MAC OSX and Iphone SMS forwarding feature to acquire SMS otp for login (SQlite3 library used to access message.db in the messages app)
+  * Download Data for this morning and tonight through the use of finding elements with Selenium
+  * Using Chrontab on macOS, automates python script to run at 1000 everyday
